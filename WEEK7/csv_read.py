@@ -1,4 +1,7 @@
-my_file = open('shampoo_sales.csv','r')
+check_file = 'WEEK7/shampoo_sales.csv'
+if not(isinstance(check_file,str)):
+	raise Exception('Could not read file, input is not a string')
+my_file = open('WEEK7/shampoo_sales.csv','r')
 lista = []
 
 for line in my_file:
