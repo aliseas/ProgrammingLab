@@ -53,7 +53,7 @@ class CSVTimeSeriesFile():
             #exception for duplicate timestamps 
             if(line_number!=1 and prev_timestamp==line[0]): 
                 raise ExamException("Problem: Duplicated timestamps.")
-            #exception for negative timestamps (and ignoring line)
+            #checking for negative timestamps (and ignoring line)
             if(line[0]<=0):
                 continue
             #Checking temperature values
