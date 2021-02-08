@@ -37,17 +37,17 @@ class CSVTimeSeriesFile():
             if 'prev_timestamp' not in locals():
                 prev_timestamp = 0;
             #Checking timestamps
-            #exception for non-digit timestamps (and ignoring line)
+            #checking for non-digit timestamps (and ignoring line)
             line[0] = line[0].strip()
             check_line = line[0]
             check_line = check_line.replace(".","")
             if not(check_line.isdigit()):
                 continue
-            #exception for none/empty timestamps (and ignoring line)
+            #checking for none/empty timestamps (and ignoring line)
             if(line[0]=='None' or line[0]=='' or len(line[0])==0):
                 continue
             line[0] = int(float(line[0])) #converting first to float to avoid problems in converting possible string floats into integers
-            #exception order of timestamps
+            #exception for order of timestamps
             if(line_number!=1 and line[0]<prev_timestamp):
                 raise ExamException("Problem: Timestamps in incorrect order.")
             #exception for duplicate timestamps 
@@ -56,12 +56,12 @@ class CSVTimeSeriesFile():
             #exception for negative timestamps (and ignoring line)
             if(line[0]<=0):
                 continue
-            #Checking for the temperature value
+            #Checking temperature values
             #checking for none/empty values for temperature
             line[1] = line[1].strip()
             if(line[1]=='None' or line[1]=='' or len(line[1])==0):
                 continue
-            #checking for non-numeric value in 
+            #checking for non-numeric value in temperature value
             temp_line = line[1] #using a variable to not fiddle with line[1]
             temp_line = temp_line.replace(".", "") #floating point numbers must still be numbers for isdigit
             temp_line = temp_line.replace("-", "") #negative numbers must still be numbers for isdigit
